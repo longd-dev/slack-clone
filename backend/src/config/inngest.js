@@ -10,6 +10,10 @@ const syncUser = inngest.createFunction(
   { event: "clerk/user.created" },
   async ({ event }) => {
     await connectDB();
+    console.log(
+      "MONGO_URI:",
+      process.env.MONGO_URI ? "✅ Found" : "❌ Missing"
+    );
 
     const { id, email_addresses, first_name, last_name, image_url } =
       event.data;
